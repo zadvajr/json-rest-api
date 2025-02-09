@@ -30,3 +30,16 @@ app.get('/users/:id', (req, res) => {
     }
 });
 
+//POST /users - Creates a new user
+app.post('/users', (req, res) => {
+    const newUser = {
+        id: Date.now(),
+        name: req.body.name,
+        email: req.body.email
+    };
+    users.push(newUser);
+
+    res.status(201).json(newUser);
+});
+
+//PUT
