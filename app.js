@@ -42,4 +42,20 @@ app.post('/users', (req, res) => {
     res.status(201).json(newUser);
 });
 
-//PUT
+//PUT /users/:id - Update an existing user
+app.put('/users/:id', (req, res) => {
+    const userIndex = users.findIndex(u => u.id === parseInt(req.params.id, 10));
+    if (userIndex !== -1) {
+        users[userIndex] = {
+            ...users[userIndex],
+            ...req.body
+        };
+
+        res.status(200).json(users[userIndex]);
+    }
+    else {
+        res.status(404).json({ error: 'User not found'});
+    }
+});
+
+//DELETE /users/:id - Delete a users
