@@ -59,3 +59,20 @@ app.put('/users/:id', (req, res) => {
 });
 
 //DELETE /users/:id - Delete a users
+app.delete('/users/:id', (req, res) => {
+    const userIndex = users.findIndex(u => u.id === parseInt(req.params.id, 10));
+    if (userIndex !== -1) {
+        const deletedUser = users.splice(userIndex, 1);
+        res.status(200).json({
+            message: 'User deleted',
+            user: deletedUser
+        });
+    }
+    else {
+        res.status(404).json({
+            error: 'User not found'
+        });
+    }
+});
+
+//Start the server
