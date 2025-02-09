@@ -75,4 +75,6 @@ app.delete('/users/:id', (req, res) => {
     }
 });
 
-//Start the server
+//Start the server 
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`API running on http://localhost:${PORT}`));
